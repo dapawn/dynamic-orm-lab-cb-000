@@ -11,11 +11,10 @@ class Student < InteractiveRecord
   def self.find_by(hash)
     hash.each do |arr|
       col_name = arr[0].to_s.sub(/:/,"")
-      binding.pry
       sql = <<-SQL
         SELECT * FROM #{self.table_name} WHERE ? = ?
       SQL
-
+      binding.pry
        DB[:conn].execute(sql, arr[0].to_s.sub(/:/,""), arr[1])
       end
   end
