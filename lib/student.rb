@@ -13,8 +13,8 @@ class Student < InteractiveRecord
       col_name = arr[0].to_s.sub(/:/,"")
       val = arr[1].is_a?(String) ? "'#{arr[1]}'" : arr[1]
       sql = "SELECT * FROM #{self.table_name} WHERE #{col_name} = #{val}"
-      binding.pry
-       DB[:conn].execute(sql)
-      end
+     end.first
+     binding.pry
+     DB[:conn].execute(sql)
   end
 end
