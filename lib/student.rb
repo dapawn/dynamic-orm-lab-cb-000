@@ -12,9 +12,9 @@ class Student < InteractiveRecord
     hash.each do |arr|
       col_name = arr[0].to_s.sub(/:/,"")
       val = arr[1].is_a?(String) ? "'#{arr[1]}'" : arr[1]
-      sql = "SELECT * FROM #{self.table_name} WHERE ? = ?"
+      sql = "SELECT * FROM #{self.table_name} WHERE #{col_name} = #{val}"
       binding.pry
-       DB[:conn].execute(sql, col_name, val)
+       DB[:conn].execute(sql)
       end
   end
 end
