@@ -9,12 +9,12 @@ class Student < InteractiveRecord
   end
 
   def self.find_by(hash)
-    hash.each do |arr|
+    hash.first.each do |arr|
       col_name = arr[0].to_s.sub(/:/,"")
       val = arr[1].is_a?(String) ? "'#{arr[1]}'" : arr[1]
       sql = "SELECT * FROM #{self.table_name} WHERE #{col_name} = #{val}"
-     end.first
-     binding.pry
-     DB[:conn].execute(sql)
+      binding.pry
+      DB[:conn].execute(sql)
+     end
   end
 end
