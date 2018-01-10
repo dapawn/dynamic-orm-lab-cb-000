@@ -13,7 +13,7 @@ class Student < InteractiveRecord
         SELECT * FROM #{self.table_name} WHERE ? = ?
       SQL
 
-      rows = DB[:conn].execute(sql, key, value)
+      rows = DB[:conn].execute(sql, key.to_s, value)
       if rows.first
         self.reify_from_row(rows.first)
       else
