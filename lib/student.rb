@@ -16,12 +16,7 @@ class Student < InteractiveRecord
         SELECT * FROM #{self.table_name} WHERE ? = ?
       SQL
 
-      rows = DB[:conn].execute(sql, arr[0].to_s.sub(/:/,""), arr[1])
-      if rows.first
-        self.reify_from_row(rows.first)
-      else
-        nil
+       DB[:conn].execute(sql, arr[0].to_s.sub(/:/,""), arr[1])
       end
-    end
   end
 end
