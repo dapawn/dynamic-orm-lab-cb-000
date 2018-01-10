@@ -9,7 +9,7 @@ class Student < InteractiveRecord
   end
 
   def self.find_by(hash)
-    hash.flatten.each do |arr|
+    hash.each do |arr|
       binding.pry
       sql = <<-SQL
         SELECT * FROM #{self.table_name} WHERE ? = ?
