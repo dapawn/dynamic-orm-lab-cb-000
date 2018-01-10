@@ -9,6 +9,7 @@ class Student < InteractiveRecord
 
   def self.find_by(hash)
     hash.each.with_index do |key,value|
+      binding.pry
       sql = <<-SQL
         SELECT * FROM #{self.table_name} WHERE ? = ?
       SQL
