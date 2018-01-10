@@ -10,8 +10,8 @@ class Student < InteractiveRecord
 
   def self.find_by(hash)
     binding.pry
-    col_name = hash[0][0].to_s.sub(/:/,"")
-    val = hash[0][1].is_a?(String) ? "'#{hash[0][1]}'" : hash[0][1]
+    col_name = hash.keys[0].to_s.sub(/:/,"")
+    val = hash.values[0].is_a?(String) ? "'#{hash.values[0]}'" : hash.values[0]
     sql = "SELECT * FROM #{self.table_name} WHERE #{col_name} = #{val}"
     DB[:conn].execute(sql)
   end
