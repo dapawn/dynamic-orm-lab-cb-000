@@ -9,13 +9,13 @@ class Student < InteractiveRecord
   end
 
   def self.find_by(hash)
-    hash.each.with_index do |key,value|
+    hash.flatten.each do |arr|
       binding.pry
       sql = <<-SQL
         SELECT * FROM #{self.table_name} WHERE ? = ?
       SQL
 
-      rows = DB[:conn].execute(sql, key.to_s, value)
+      rows = DB[:conn].execute(sql, arr[0].sub(/:/,""), arr[1])
       if rows.first
         self.reify_from_row(rows.first)
       else
